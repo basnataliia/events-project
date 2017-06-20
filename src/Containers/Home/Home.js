@@ -3,7 +3,8 @@ import {PropTypes} from 'prop-types';
 import {connect} from 'react-redux';
 import {loadEvents} from '../../Actions/EventAction';
 import {getGeoLocation} from '../../Actions/GeolocationAction';
-
+import LoadingPage from '../../Components/Loading/Loading';
+import EventList from '../../Components/EventList/EventList';
 
 class Home extends Component {
   componentDidMount() {
@@ -17,14 +18,16 @@ class Home extends Component {
   }
 
   render() {
+    if(this.props.loaded) {
+      return (
+        <EventList events={this.props.events}/>
+      );
+    }
+    if(this.props.error) {
+       return <p>Sorry, there was a problem loading the data.</p>;
+     }
     return (
-      <div className="App">
-        {
-          this.props.events.map(event => {
-            return <p key={event.id}>{event.title}</p>
-          })
-        }
-      </div>
+      <LoadingPage />
     );
   }
 }
@@ -34,13 +37,16 @@ Home.propTypes = {
   getGeoLocation: PropTypes.func.isRequired,
   events: PropTypes.array.isRequired,
   currentLocation: PropTypes.string.isRequired,
+  loaded: PropTypes.bool.isRequired,
+  // error: PropTypes.symbol,
 };
 
 function mapStateToProps(state, ownProps) {
-  debugger;
   return {
     currentLocation: state.events.location,
-    events: state.events.events
+    events: state.events.events,
+    loaded: state.events.loaded,
+    error: state.events.error,
   };
 }
 

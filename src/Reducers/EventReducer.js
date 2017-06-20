@@ -8,12 +8,13 @@ const eventsInitialState = {
   events: [],
   error: undefined,
   location: '',
+  loaded: false,
 }
 
 export const EventReducer = (state = eventsInitialState, action={}) => {
   switch(action.type){
     case LOAD_EVENTS_SUCCESS:
-        return Object.assign({}, state, {events: action.payload});
+        return Object.assign({}, state, {events: action.payload, loaded: true});
     case LOAD_EVENTS_ERROR:
         return Object.assign({}, state, {error: action.payload});
     case GET_CURRENT_GEOLOCATION:
