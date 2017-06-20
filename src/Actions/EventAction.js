@@ -4,7 +4,7 @@ import {GET_ALL_EVENTS, APP_KEY} from '../Constants/api-url';
 
 export function loadEvents(param) {
   return function loadAllEvents(dispatch) {
-    apiCall(GET_ALL_EVENTS)
+    apiCall(GET_ALL_EVENTS + param)
       .then(response => dispatch({
         type: LOAD_EVENTS_SUCCESS,
         payload: response.events.event
