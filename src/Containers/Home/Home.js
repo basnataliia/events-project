@@ -5,6 +5,7 @@ import {loadEvents} from '../../Actions/EventAction';
 import {getGeoLocation} from '../../Actions/GeolocationAction';
 import LoadingPage from '../../Components/Loading/Loading';
 import EventList from '../../Components/EventList/EventList';
+// import {withRouter} from 'react-router';
 
 class Home extends Component {
   componentDidMount() {

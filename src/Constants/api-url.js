@@ -5,3 +5,4 @@ const GOOGLE_API_KEY = 'AIzaSyDbAgr7WAxWvOPGf4XxE4YrUustue_tuRs'
 export const GOOGLE_API_BASE_URL = `https://maps.googleapis.com/maps/api/geocode/json?key=${GOOGLE_API_KEY}&latlng=`;
 export const GET_ALL_EVENTS = EVENTS_API_BASE_URL + `search?app_key=${APP_KEY}&date=Future` +
             `&image_sizes=perspectivecrop290by250&page_size=100&within=25&location=`;
+export const GET_EVENT_BY_ID_URL = EVENTS_API_BASE_URL + `get?app_key=${APP_KEY}&id=`;

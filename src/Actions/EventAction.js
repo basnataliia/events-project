@@ -1,6 +1,9 @@
-import {LOAD_EVENTS_SUCCESS, LOAD_EVENTS_ERROR} from './ActionTypes';
+import {LOAD_EVENTS_SUCCESS,
+        LOAD_EVENTS_ERROR,
+        GET_EVENT_BY_ID
+        } from './ActionTypes';
 import {apiCall} from '../Api/Api';
-import {GET_ALL_EVENTS, APP_KEY} from '../Constants/api-url';
+import {GET_ALL_EVENTS, GET_EVENT_BY_ID_URL} from '../Constants/api-url';
 
 export function loadEvents(param) {
   return function loadAllEvents(dispatch) {
@@ -11,16 +14,38 @@ export function loadEvents(param) {
             return event;
           }
         });
-
         dispatch({
           type: LOAD_EVENTS_SUCCESS,
           payload: respWithImages
         })
       })
-        //on error we dispatch an error
+        //on error dispatch an error
       .catch(error => dispatch({
         type: LOAD_EVENTS_ERROR,
         payload: error
       }))
+  };
+}
+
+export function getEventSuccess(recipe) {
+  return {
+    type: GET_EVENT_BY_ID,
+    payload: recipe,
+  };
+}
+
+export function GetEventById(eventId) {
+  return dispatch => {
+    debugger;
+    const url = GET_EVENT_BY_ID_URL + eventId;
+    console.log('url', url);
+    apiCall(url)
+      .then(response => {
+        debugger;
+        dispatch(getEventSuccess(response));
+      })
+      .catch(error => {
+        throw (error);
+      });
   };
 }
