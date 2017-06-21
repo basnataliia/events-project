@@ -23,7 +23,7 @@ const EventItem = ({event}) => {
         overlay={<CardTitle className="card-title" title={<span style={{fontSize:'14px', lineHeight:'5px'}}>
           Where: {event.venue_name}</span>}/>}
       >
-        <img src={event.image.perspectivecrop290by250.url} style={{height: '276px'}}/>
+        <img src={event.image.perspectivecrop290by250.url} style={{height: '276px'}} alt={title}/>
       </CardMedia>
      </Card>
   );

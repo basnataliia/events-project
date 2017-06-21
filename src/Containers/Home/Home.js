@@ -5,7 +5,7 @@ import {loadEvents} from '../../Actions/EventAction';
 import {getGeoLocation} from '../../Actions/GeolocationAction';
 import LoadingPage from '../../Components/Loading/Loading';
 import EventList from '../../Components/EventList/EventList';
-// import {withRouter} from 'react-router';
+import Search from '../../Components/Search/Search';
 
 class Home extends Component {
   componentDidMount() {
@@ -21,7 +21,10 @@ class Home extends Component {
   render() {
     if(this.props.loaded) {
       return (
-        <EventList events={this.props.events}/>
+        <div>
+          <Search onSearch={this.props.loadEvents} location={this.props.currentLocation}/>
+          <EventList events={this.props.events}/>
+        </div>
       );
     }
     if(this.props.error) {
@@ -39,7 +42,6 @@ Home.propTypes = {
   events: PropTypes.array.isRequired,
   currentLocation: PropTypes.string.isRequired,
   loaded: PropTypes.bool.isRequired,
-  // error: PropTypes.symbol,
 };
 
 function mapStateToProps(state, ownProps) {
@@ -53,7 +55,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    loadEvents: location => dispatch(loadEvents(location)),
+    loadEvents: (location, search) => dispatch(loadEvents(location, search)),
     getGeoLocation: () => dispatch(getGeoLocation())
   };
 }

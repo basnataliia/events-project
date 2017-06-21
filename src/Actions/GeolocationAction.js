@@ -15,9 +15,7 @@ function getCityName(dispatch, latitude, longitude) {
       if(response.results[1]) {
           let results = response.results[1];
           let res = results.address_components.filter(item => {
-            if(item.types.indexOf("postal_code") >= 0) {
-              return item;
-            }
+            return item.types.indexOf("postal_code") >= 0;
           });
         let postalCode = res[0].long_name;
         dispatch(getLocationSuccess(postalCode));

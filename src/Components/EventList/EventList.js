@@ -3,7 +3,6 @@ import {PropTypes} from 'prop-types';
 import EventItem from '../EventItem/EventItem';
 
 const EventList = ({events}) => {
-  // console.log('events', events);
   const list = events.map(event => {
     return <EventItem key={event.id} event={event}/>
   });

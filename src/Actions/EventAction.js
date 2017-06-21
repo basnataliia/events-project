@@ -5,14 +5,13 @@ import {LOAD_EVENTS_SUCCESS,
 import {apiCall} from '../Api/Api';
 import {GET_ALL_EVENTS, GET_EVENT_BY_ID_URL} from '../Constants/api-url';
 
-export function loadEvents(param) {
+export function loadEvents(param, search = false) {
   return function loadAllEvents(dispatch) {
-    apiCall(GET_ALL_EVENTS + param)
+    let url = (search) ? `${GET_ALL_EVENTS}${param}&keywords=${search}` : GET_ALL_EVENTS + param;
+    apiCall(url)
       .then(response => {
         const respWithImages = response.events.event.filter(event => {
-          if(event.image) {
-            return event;
-          }
+          return (event.image) ? true : false;
         });
         dispatch({
           type: LOAD_EVENTS_SUCCESS,
@@ -36,12 +35,9 @@ export function getEventSuccess(recipe) {
 
 export function GetEventById(eventId) {
   return dispatch => {
-    debugger;
     const url = GET_EVENT_BY_ID_URL + eventId;
-    console.log('url', url);
     apiCall(url)
       .then(response => {
-        debugger;
         dispatch(getEventSuccess(response));
       })
       .catch(error => {
