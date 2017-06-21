@@ -8,7 +8,7 @@ import {LOAD_EVENTS_SUCCESS,
 const eventsInitialState = {
   events: [],
   error: undefined,
-  location: '',
+  location: {},
   loaded: false,
   eventDetails: {},
 }

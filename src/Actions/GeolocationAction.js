@@ -2,6 +2,14 @@ import {GET_CURRENT_GEOLOCATION} from './ActionTypes';
 import {apiCall} from '../Api/Api';
 import {GOOGLE_API_BASE_URL} from '../Constants/api-url';
 
+const defaultLocation = {
+  postalCode: 'M6K 3P8',
+  coords: {
+    lat: '43.653226',
+    lng: '-79.383184'
+  }
+}
+
 export function getLocationSuccess(location) {
   return {
     type: GET_CURRENT_GEOLOCATION,
@@ -18,9 +26,17 @@ function getCityName(dispatch, latitude, longitude) {
             return item.types.indexOf("postal_code") >= 0;
           });
         let postalCode = res[0].long_name;
-        dispatch(getLocationSuccess(postalCode));
+        let newLocation = {
+          postalCode: postalCode,
+          coords: {
+            lat: latitude,
+            lng: longitude
+          }
+        }
+        // dispatch(getLocationSuccess(postalCode));
+        dispatch(getLocationSuccess(newLocation));
       } else {
-        dispatch(getLocationSuccess('Toronto'));
+        dispatch(getLocationSuccess(defaultLocation));
       }
     })
     .catch(error => {
@@ -37,7 +53,7 @@ export function getGeoLocation() {
         getCityName(dispatch, latitude, longitude);
       });
     } else {
-      dispatch(getLocationSuccess('Toronto'));
+      dispatch(getLocationSuccess(defaultLocation));
     }
   };
 }

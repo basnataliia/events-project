@@ -6,6 +6,8 @@ import {getGeoLocation} from '../../Actions/GeolocationAction';
 import LoadingPage from '../../Components/Loading/Loading';
 import EventList from '../../Components/EventList/EventList';
 import Search from '../../Components/Search/Search';
+import getMarkers from '../../Components/Markers/getMarkers';
+// import EventsMapContainer from '../../Components/EventsMapContainer/EventsMapContainer';
 
 class Home extends Component {
   componentDidMount() {
@@ -13,17 +15,21 @@ class Home extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.currentLocation !== nextProps.currentLocation) {
-      this.props.loadEvents(nextProps.currentLocation);
+    debugger;
+    console.log('this.props.currentLocation', this.props.currentLocation);
+    if(this.props.currentLocation.postalCode !== nextProps.currentLocation.postalCode) {
+      this.props.loadEvents(nextProps.currentLocation.postalCode);
     }
   }
 
   render() {
     if(this.props.loaded) {
+      const markers = getMarkers(this.props.events);
       return (
         <div>
-          <Search onSearch={this.props.loadEvents} location={this.props.currentLocation}/>
+          <Search onSearch={this.props.loadEvents} location={this.props.currentLocation.postalCode}/>
           <EventList events={this.props.events}/>
+          {/* <EventsMapContainer markers={markers} currentLocation={this.props.currentLocation.coords}/> */}
         </div>
       );
     }
@@ -40,7 +46,7 @@ Home.propTypes = {
   loadEvents: PropTypes.func.isRequired,
   getGeoLocation: PropTypes.func.isRequired,
   events: PropTypes.array.isRequired,
-  currentLocation: PropTypes.string.isRequired,
+  currentLocation: PropTypes.object.isRequired,
   loaded: PropTypes.bool.isRequired,
 };
 
