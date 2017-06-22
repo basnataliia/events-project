@@ -24,7 +24,6 @@ class Home extends Component {
   render() {
     if(this.props.loaded) {
       const markers = getMarkers(this.props.events);
-      console.log('markers', markers);
       return (
         <div>
           <Search onSearch={this.props.loadEvents} location={this.props.currentLocation.postalCode}/>

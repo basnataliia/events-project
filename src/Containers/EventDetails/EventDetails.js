@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import {PropTypes} from 'prop-types';
 import {connect} from 'react-redux';
 import {GetEventById} from '../../Actions/EventAction';
-// import {withRouter} from 'react-router';
 
 class EventDetails extends Component {
   componentDidMount() {
@@ -13,13 +13,19 @@ class EventDetails extends Component {
     if(eventDetails) {
       return (
         <div>
-          {eventDetails.title}
+          <h1>{eventDetails.title}</h1>
+          <span>{eventDetails.address}</span>
+          <p>{eventDetails.description}</p>
         </div>
       );
     }
     return null;
   }
 }
+
+EventDetails.EventDetails = {
+  eventDetails: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = state => {
   return {

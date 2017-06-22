@@ -1,4 +1,5 @@
 import React from 'react';
+import {PropTypes} from 'prop-types';
 import MainGoogleMap from '../MainGoogleMap/MainGoogleMap';
 
 export default function EventsMap({markers, currentLocation, handleMarkerClick}) {
@@ -16,7 +17,7 @@ export default function EventsMap({markers, currentLocation, handleMarkerClick})
 }
 
 EventsMap.propTypes = {
-  markers: React.PropTypes.array,
-  currentLocation: React.PropTypes.object,
-  handleMarkerClick: React.PropTypes.func,
+  markers: PropTypes.array,
+  currentLocation: PropTypes.object,
+  handleMarkerClick: PropTypes.func,
 };

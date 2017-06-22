@@ -33,7 +33,6 @@ function getCityName(dispatch, latitude, longitude) {
             lng: longitude
           }
         }
-        // dispatch(getLocationSuccess(postalCode));
         dispatch(getLocationSuccess(newLocation));
       } else {
         dispatch(getLocationSuccess(defaultLocation));

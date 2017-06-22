@@ -26,10 +26,10 @@ export function loadEvents(param, search = false) {
   };
 }
 
-export function getEventSuccess(recipe) {
+export function getEventSuccess(event) {
   return {
     type: GET_EVENT_BY_ID,
-    payload: recipe,
+    payload: event,
   };
 }
 

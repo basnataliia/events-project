@@ -1,6 +1,6 @@
-import  { default as React }  from 'react';
+import React from 'react';
 import {Link} from 'react-router';
-import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
+import {withGoogleMap, GoogleMap, Marker, InfoWindow} from 'react-google-maps';
 
 const MainGoogleMap = withGoogleMap(props => (
   <GoogleMap
@@ -25,11 +25,10 @@ const MainGoogleMap = withGoogleMap(props => (
   </GoogleMap>
 ));
 
-// EventsMap.propTypes = {
-//   props.markers: React.PropTypes.array,
-//   props.currentLocation: React.PropTypes.object,
-//   props.handleMarkerClick: React.PropTypes.func,
-// };
-
+MainGoogleMap.propTypes = {
+  markers: React.PropTypes.array,
+  currentLocation: React.PropTypes.object,
+  handleMarkerClick: React.PropTypes.func,
+};
 
 export default MainGoogleMap;

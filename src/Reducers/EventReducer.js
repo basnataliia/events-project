@@ -12,10 +12,6 @@ const eventsInitialState = {
   location: {},
   loaded: false,
   eventDetails: {},
-  // markerPopover: {
-  //   markerId: null,
-  //   showInfo: false
-  // },
 }
 
 export const EventReducer = (state = eventsInitialState, action={}) => {
@@ -30,7 +26,7 @@ export const EventReducer = (state = eventsInitialState, action={}) => {
         return Object.assign({}, state, {eventDetails: action.payload});
     case SHOW_MARKER_POPOVER:
         const updatedEvents = state.events.map(event => {
-          return (event.id === action.payload.markerId) ? (event['showInfo'] = action.payload.showInfo, event) :  event;
+          return (event.id === action.payload.markerId) ? (event['showInfo'] = action.payload.showInfo, event) : event;
         });
         return Object.assign({}, state, {events: updatedEvents});
     default:

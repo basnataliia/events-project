@@ -8,14 +8,14 @@ const formatDate = (props) => {
     'August', 'September', 'October',
     'November', 'December',
   ];
-  
+
   const date = new Date(props.pubDate);
   const day = date.getDate();
   const monthIndex = date.getMonth();
   const year = date.getFullYear();
 
   return (
-        <div style={{paddingTop: '5px'}}>{`${day}  ${monthNames[monthIndex]} ${ year}`}</div>
+     <div style={{paddingTop: '5px'}}>{`${day}  ${monthNames[monthIndex]} ${ year}`}</div>
   );
 };
 
