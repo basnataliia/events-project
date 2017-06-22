@@ -10,18 +10,26 @@ const MainGoogleMap = withGoogleMap(props => (
   >
     {props.markers.map(marker => (
       <Marker
-        {...marker}
-        >
-          {marker.showInfo && (
-          <InfoWindow>
-            <Link to={'/EventDetails/' + marker.id}>
-              <div>{marker.title}</div>
-            </Link>
-          </InfoWindow>
-          )}
-      </Marker>
-    ))}
+          {...marker}
+          onClick={() => props.onMarkerClick(marker.id, true)}
+          >
+            {marker.showInfo && (
+            <InfoWindow onCloseClick={() => props.onMarkerClick(marker.id, false)}>
+              <Link to={'/EventDetails/' + marker.id}>
+                <div>{marker.title}</div>
+              </Link>
+            </InfoWindow>
+            )}
+        </Marker>
+      ))}
   </GoogleMap>
 ));
+
+// EventsMap.propTypes = {
+//   props.markers: React.PropTypes.array,
+//   props.currentLocation: React.PropTypes.object,
+//   props.handleMarkerClick: React.PropTypes.func,
+// };
+
 
 export default MainGoogleMap;

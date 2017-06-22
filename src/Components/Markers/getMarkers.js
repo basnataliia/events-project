@@ -9,7 +9,7 @@ const getMarkers = (events) => {
       },
       key: index,
       defaultAnimation: 2,
-      showInfo: false,
+      showInfo: event.showInfo,
       title: event.title,
       id: event.id,
     };
