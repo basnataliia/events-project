@@ -8,20 +8,22 @@ const MainGoogleMap = withGoogleMap(props => (
     defaultZoom={13}
     defaultCenter={{ lat: props.currentLocation.lat, lng: props.currentLocation.lng }}
   >
-    {props.markers.map(marker => (
-      <Marker
-          {...marker}
-          onClick={() => props.onMarkerClick(marker.id, true)}
-          >
-            {marker.showInfo && (
-            <InfoWindow onCloseClick={() => props.onMarkerClick(marker.id, false)}>
-              <Link to={'/EventDetails/' + marker.id}>
-                <div>{marker.title}</div>
-              </Link>
-            </InfoWindow>
-            )}
-        </Marker>
-      ))}
+    {props.markers.map(marker => {
+      return (
+        <Marker
+            {...marker}
+            onClick={() => props.onMarkerClick(marker.id, true)}
+            >
+              {marker.showInfo && (
+              <InfoWindow onCloseClick={() => props.onMarkerClick(marker.id, false)}>
+                <Link to={'/EventDetails/' + marker.id}>
+                  <div>{marker.title}</div>
+                </Link>
+              </InfoWindow>
+              )}
+          </Marker>
+        )
+    })}
   </GoogleMap>
 ));
 
